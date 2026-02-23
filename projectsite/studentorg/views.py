@@ -6,6 +6,7 @@ from studentorg.models import Organization, OrgMember, Student, College, Program
 from studentorg.forms import OrganizationForm, OrgMemberForm, StudentForm, CollegeForm, ProgramForm
 from django.urls import reverse_lazy
 from django.db.models import Q
+from django.utils import timezone
 # Create your views here.
 
 class HomePageView(ListView):
@@ -13,8 +14,6 @@ class HomePageView(ListView):
     context_object_name = 'home'
     template_name = "home.html"
 
-
-## Organization Views##
 class OrganizationList(ListView):
     model = Organization
     context_object_name = 'organization'
