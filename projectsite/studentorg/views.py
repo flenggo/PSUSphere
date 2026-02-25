@@ -87,7 +87,7 @@ class StudentList(ListView):
     context_object_name = 'student'
     template_name = 'student_list.html'
     paginate_by = 5
-    ordering = ['student_name']
+    ordering = ['lastname']
 
 class StudentCreateView(CreateView):
     model = Student
