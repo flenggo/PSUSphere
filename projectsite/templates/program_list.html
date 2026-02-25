@@ -25,9 +25,25 @@
                             </div>
                             <div class="col-md-6">
                                 <div class="pull-right">
-                                    <a href="{% url 'program-add' %}" class="btn btn-success btn-rounded">Add Organization</a>
+                                    <a href="{% url 'program-add' %}" class="btn btn-success btn-rounded">Add Program</a>
                                 </div>
+                                </div>
+                        </div>
+                            <div class="col-md-12">
+                            <form method="get" class="row g-2 align-items-center">
+                            <div class="col-auto">
+                                <label for="smallSelect" class="col-form-label">Sort by</label>
                             </div>
+                            <div class="col-auto">
+                            <select class="form-control form-control-sm" id="smallSelect" name="sort_by">
+                                <option value="prog_name" {% if request.GET.sort_by == "prog_name" %}selected{% endif%}>Program Name</option>
+                                <option value="college_college_name" {% if request.GET.sort_by == "college_college_name"%} selected {% endif %}>College</option>
+                                </select>
+                            </div>
+                            <div class="col-auto">
+                                <button type="submit" class="btn btn-primary btn-sm btn-rounded">Sort</button>
+                            </div>
+                            </form>
                         </div>
                     <div class="card-body">
                         <table class="table table-striped mt-3">
