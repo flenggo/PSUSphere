@@ -18,6 +18,8 @@ class HomePageView(ListView):
 
         context = super () .get_context_data ( ** kwargs)
         context ["total_students"] = Student.objects.count ()
+        context ["total_organizations"] = Organization.objects.count()
+        context ["total_programs"] = Program.objects.count()
 
         today = timezone.now() .date ()
         count = (
@@ -76,6 +78,14 @@ class OrgMemberList(ListView):
     context_object_name = 'orgmember'
     template_name = 'orgmember_list.html'
     paginate_by = 5
+
+    def get_ordering(self):
+        allowed = ["student__name", "date_joined"]
+        sort_by = self.request.GET.get("sort_by")
+        
+        if sort_by in allowed:
+            return sort_by
+        return "student__name"
 
     def get_queryset (self):
         qs = super().get_queryset()
