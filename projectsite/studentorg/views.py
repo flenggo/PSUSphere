@@ -54,6 +54,16 @@ class OrganizationList(ListView):
 
         return qs
 
+
+## Organizations Views ##
+
+class OrganizationList(ListView):
+    model = Organization
+    context_object_name = 'organization'
+    template_name = 'org_list.html'
+    paginate_by = 5
+    ordering = ['name']
+
 class OrganizationCreateView(CreateView):
     model = Organization
     form_class = OrganizationForm
@@ -73,6 +83,7 @@ class OrganizationDeleteView(DeleteView):
 
 
 ## OrgMember Views ##
+
 class OrgMemberList(ListView):
     model = OrgMember
     context_object_name = 'orgmember'
@@ -117,6 +128,7 @@ class OrgMemberDeleteView(DeleteView):
     
 
 ## Student Views##
+
 class StudentList(ListView):
     model = Student
     context_object_name = 'student'
@@ -153,6 +165,7 @@ class StudentDeleteView(DeleteView):
 
 
 ## College Views ##
+
 class CollegeList(ListView):
     model = College
     context_object_name = 'college'
@@ -189,6 +202,7 @@ class CollegeDeleteView(DeleteView):
 
 
 ## Program Views ##
+
 class ProgramList(ListView):
     model = Program
     context_object_name = 'program'
