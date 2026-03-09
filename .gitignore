@@ -1,0 +1,19 @@
+# Python cache files (The ones that caused the conflicts!)
+__pycache__/
+*.py[cod]
+*$py.class
+
+# Your local SQLite database (Collaborators should have their own)
+db.sqlite3
+db.sqlite3-journal
+
+# Your virtual environment
+psusenv/
+venv/
+env/
+
+# Media uploads (User-uploaded files shouldn't be in Git)
+media/
+
+# Environment variables (For secret keys later on)
+.env
