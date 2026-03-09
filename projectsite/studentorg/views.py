@@ -14,6 +14,7 @@ class HomePageView(ListView):
     context_object_name = 'home'
     template_name = "home.html"
 
+<<<<<<< HEAD
     def get_context_data (self, ** kwargs) :
 
         context = super () .get_context_data ( ** kwargs)
@@ -36,16 +37,23 @@ class HomePageView(ListView):
         context ["students_joined_this_year"] = count
         return context
 
+=======
+>>>>>>> 53da94e9b07b6e3abf3ed89c7ef114e674dfd01e
 class OrganizationList(ListView):
     model = Organization
     context_object_name = 'organization'
     template_name = 'org_list.html'
     paginate_by = 5
-    ordering = ["college__college_name","name"]
 
+<<<<<<< HEAD
     def get_queryset (self):
         qs = super().get_queryset()
         query = self.request.GET.get('q')
+=======
+def get_queryset (self):
+    qs = super().get_queryset()
+    query = self.request.GET.get('q')
+>>>>>>> 53da94e9b07b6e3abf3ed89c7ef114e674dfd01e
 
         if query:
             qs = qs.filter(
