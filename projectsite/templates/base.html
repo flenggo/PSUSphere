@@ -14,8 +14,8 @@
 	<div class="wrapper">
 		<div class="main-header">
 			<div class="logo-header">
-				<a href="index.html" class="logo">
-					Ready Dashboard
+				<a href="{% url 'home' %}" class="logo">
+					PSUSphere
 				</a>
 				<button class="navbar-toggler sidenav-toggler ml-auto" type="button" data-toggle="collapse" data-target="collapse" aria-controls="sidebar" aria-expanded="false" aria-label="Toggle navigation">
 					<span class="navbar-toggler-icon"></span>
@@ -104,14 +104,14 @@
 							</ul>
 						</li>
 						<li class="nav-item dropdown">
-							<a class="dropdown-toggle profile-pic" data-toggle="dropdown" href="#" aria-expanded="false"> <img src="{% static 'img/profile.jpg' %}" alt="user-img" width="36" class="img-circle"><span>Hizrian</span> </a>
+							<a class="dropdown-toggle profile-pic" data-toggle="dropdown" href="#" aria-expanded="false"> <img src="{% static 'img/profile.jpg' %}" alt="user-img" width="36" class="img-circle"><span>Admin</span> </a>
 							<ul class="dropdown-menu dropdown-user">
 								<li>
 									<div class="user-box">
 										<div class="u-img"><img src="{% static 'img/profile.jpg' %}" alt="user"></div>
 										<div class="u-text">
-											<h4>Hizrian</h4>
-											<p class="text-muted">hello@themekita.com</p><a href="profile.html" class="btn btn-rounded btn-danger btn-sm">View Profile</a></div>
+											<h4>Admin</h4>
+											<p class="text-muted">admin@psusphere.com</p><a href="#" class="btn btn-rounded btn-danger btn-sm">View Profile</a></div>
 										</div>
 									</li>
 									<div class="dropdown-divider"></div>
@@ -137,7 +137,7 @@
 						<div class="info">
 							<a class="" data-toggle="collapse" href="#collapseExample" aria-expanded="true">
 								<span>
-									Hizrian
+									Admin
 									<span class="user-level">Administrator</span>
 									<span class="caret"></span>
 								</span>
@@ -164,46 +164,46 @@
 							</div>
 						</div>
 					</div>
+					
 					<ul class="nav">
-						<li class="nav-item">
-							<a href="index.html">
+						<li class="nav-item {% if request.resolver_match.url_name == 'home' %}active{% endif %}">
+							<a href="{% url 'home' %}">
 								<i class="la la-dashboard"></i>
 								<p>Dashboard</p>
 							</a>
 						</li>
-						<li class="nav-item">
+						<li class="nav-item {% if 'organization' in request.resolver_match.url_name %}active{% endif %}">
 							<a href="{% url 'organization-list' %}">
-								<i class="la la-table"></i>
+								<i class="la la-building"></i>
 								<p>Organization</p>
 							</a>
 						</li>
-						<li class="nav-item">
-							<a href="forms.html">
-								<i class="la la-keyboard-o"></i>
+						<li class="nav-item {% if 'orgmember' in request.resolver_match.url_name %}active{% endif %}">
+							<a href="{% url 'orgmember-list' %}">
+								<i class="la la-users"></i>
 								<p>Org. Members</p>
 							</a>
 						</li>
-						<li class="nav-item">
-							<a href="tables.html">
-								<i class="la la-th"></i>
+						<li class="nav-item {% if 'student' in request.resolver_match.url_name %}active{% endif %}">
+							<a href="{% url 'student-list' %}">
+								<i class="la la-user"></i>
 								<p>Student</p>
 							</a>
 						</li>
-						<li class="nav-item">
-							<a href="notifications.html">
-								<i class="la la-bell"></i>
+						<li class="nav-item {% if 'college' in request.resolver_match.url_name %}active{% endif %}">
+							<a href="{% url 'college-list' %}">
+								<i class="la la-bank"></i>
 								<p>College</p>
 							</a>
 						</li>
-						<li class="nav-item active">
-							<a href="typography.html">
-								<i class="la la-font"></i>
-								<p>Typography</p>
-								<span class="badge badge-danger">25</span>
+						<li class="nav-item {% if 'program' in request.resolver_match.url_name %}active{% endif %}">
+							<a href="{% url 'program-list' %}">
+								<i class="la la-graduation-cap"></i>
+								<p>Program</p>
 							</a>
 						</li>
 					</ul>
-				</div>
+					</div>
 			</div>
 			<div class="main-panel">
                 {% block content %}
@@ -234,26 +234,6 @@
 						</div>
 					</div>
 				</footer>
-			</div>
-		</div>
-	</div>
-	<div class="modal fade" id="modalUpdate" tabindex="-1" role="dialog" aria-labelledby="modalUpdatePro" aria-hidden="true">
-		<div class="modal-dialog modal-dialog-centered" role="document">
-			<div class="modal-content">
-				<div class="modal-header bg-primary">
-					<h6 class="modal-title"><i class="la la-frown-o"></i> Under Development</h6>
-					<button type="button" class="close" data-dismiss="modal" aria-label="Close">
-						<span aria-hidden="true">&times;</span>
-					</button>
-				</div>
-				<div class="modal-body text-center">
-					<p>Currently the pro version of the <b>Ready Dashboard</b> Bootstrap is in progress development</p>
-					<p>
-					<b>We'll let you know when it's done</b></p>
-				</div>
-				<div class="modal-footer">
-					<button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-				</div>
 			</div>
 		</div>
 	</div>

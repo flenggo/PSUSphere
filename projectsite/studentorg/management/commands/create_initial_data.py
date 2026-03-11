@@ -12,7 +12,6 @@ class Command(BaseCommand):
 
     def create_organization(self, count):
         fake = Faker()
-
         for _ in range(count):
             words = [fake.word() for _ in range(2)] # two words
             organization_name = ' '.join(words)
@@ -21,10 +20,9 @@ class Command(BaseCommand):
                 college=College.objects.order_by('?').first(),
                 description=fake.sentence()
             )
-        
         self.stdout.write(self.style.SUCCESS(
             'Initial data for organization created successfully.'))
-    
+
     def create_students(self, count):
         fake = Faker('en_PH')
         for _ in range(count):
@@ -37,7 +35,7 @@ class Command(BaseCommand):
             )
         self.stdout.write(self.style.SUCCESS(
             'Initial data for students created successfully.'))
-    
+
     def create_membership(self, count):
         fake = Faker()
         for _ in range(count):
