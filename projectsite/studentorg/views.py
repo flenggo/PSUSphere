@@ -3,20 +3,58 @@ from django.urls import reverse_lazy
 from django.views.generic.base import TemplateView
 from django.views.generic.list import ListView
 from django.views.generic.edit import CreateView, UpdateView, DeleteView
+from django.utils import timezone
+from django.db.models import Q
 from .models import College, Program, Organization, Student, OrgMember
 
 
 # ==============================
 # HOME & ORGANIZATION VIEWS
 # ==============================
-class HomePageView(TemplateView):
-    template_name = 'home.html'
+class HomePageView(ListView):
+    model = Organization
+    context_object_name = 'home'
+    template_name = "home.html"
+
+    def get_context_data(self, **kwargs):
+
+        context = super().get_context_data(**kwargs)
+        context["total_students"] = Student.objects.count()
+        
+        today = timezone.now().date()
+        count = (
+            OrgMember.objects.filter(
+                date_joined__year=today.year
+            )
+            .values("student")
+            .distinct()
+            .count()
+        )
+        context["students_joined_this_year"] = count
+        # Count the data for the dashboard
+        # context["total_students"] = Student.objects.count()
+        # context["total_organizations"] = Organization.objects.count()
+        # context["total_programs"] = Program.objects.count()
+        
+        return context
+
 
 class OrganizationList(ListView):
     model = Organization
     context_object_name = 'organization'
     template_name = 'org_list.html'
     paginate_by = 5
+
+    def get_queryset(self):
+        qs = super().get_queryset()
+        query = self.request.GET.get('q')
+
+        if query:
+            qs = qs.filter(
+                Q(name_icontains=query) |
+                Q(description_icontains=query)
+            )
+        return qs
 
 class OrganizationCreateView(CreateView):
     model = Organization
