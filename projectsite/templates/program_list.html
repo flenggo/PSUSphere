@@ -46,7 +46,7 @@
                                     <div class="col-auto">
                                         <select class="form-control form-control-sm" id="smallSelect" name="sort_by">
                                             <option value="prog_name" {% if request.GET.sort_by == "prog_name" %}selected{% endif %}>Program Name</option>
-                                            <option value="college_college_name" {% if request.GET.sort_by == "college_college_name" %}selected{% endif %}>College</option>
+                                            <option value="college__college_name" {% if request.GET.sort_by == "college__college_name" %}selected{% endif %}>College</option>
                                         </select>
                                     </div>
                                     <div class="col-auto">
