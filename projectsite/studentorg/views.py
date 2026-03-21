@@ -5,13 +5,14 @@ from django.views.generic.list import ListView
 from django.views.generic.edit import CreateView, UpdateView, DeleteView
 from django.utils import timezone
 from django.db.models import Q
+from django.contrib.auth.mixins import LoginRequiredMixin
+from django.views.generic import ListView # (or TemplateView, etc.)
 from .models import College, Program, Organization, Student, OrgMember
-
 
 # ==============================
 # HOME & ORGANIZATION VIEWS
 # ==============================
-class HomePageView(ListView):
+class HomePageView(LoginRequiredMixin, ListView):
     model = Organization
     context_object_name = 'home'
     template_name = "home.html"
