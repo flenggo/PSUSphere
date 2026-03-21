@@ -1,0 +1,60 @@
+{% load i18n %}
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
+    <title>Complete Sign Up | PSUSphere</title>
+    <link rel="stylesheet" href="{% static 'css/bootstrap.min.css' %}" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/mdb-ui-kit/6.4.2/mdb.min.css" />
+    <style>
+        body {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            height: 100vh;
+            background-color: #f8f9fc;
+        }
+        .auth-card {
+            max-width: 500px;
+            width: 100%;
+            background: #fff;
+            border-radius: 12px;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+            padding: 2.5rem;
+        }
+    </style>
+</head>
+<body>
+    <div class="auth-card text-center">
+        <h3 class="mb-4">Almost Done!</h3>
+        <p class="mb-4 text-muted">You are about to use your <strong>Google</strong> account to login to PSUSphere. As a final step, please pick a username.</p>
+        
+        <form class="signup" id="signup_form" method="post" action="{% url 'socialaccount_signup' %}">
+            {% csrf_token %}
+            
+            {% for field in form %}
+            <div class="form-outline mb-4 text-start" data-mdb-input-init>
+                {{ field }}
+                <label class="form-label" for="{{ field.id_for_label }}">{{ field.label }}</label>
+                <div class="text-danger mt-1" style="font-size: 0.85rem;">{{ field.errors|striptags }}</div>
+            </div>
+            {% endfor %}
+            
+            <button type="submit" class="btn btn-primary btn-block mt-4">Complete Sign Up</button>
+        </form>
+    </div>
+    
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/mdb-ui-kit/6.4.2/mdb.min.js"></script>
+    
+    <script>
+        document.querySelectorAll('input').forEach(function(input) {
+            if(input.type !== 'hidden' && input.type !== 'submit') {
+                input.classList.add('form-control');
+            }
+        });
+    </script>
+</body>
+</html>
